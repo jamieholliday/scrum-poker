@@ -27,13 +27,16 @@ module.exports = {
   },
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.js?$/,
       loaders: ['react-hot', 'babel'],
       include: path.join(__dirname, 'scripts')
     },
+    {test: /\.js$/, 
+      loader: "eslint-loader", 
+      exclude: /node_modules/
+    },
     {
         test: /\.css$/,
-        // loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
         loader: 'style-loader!css-loader'
     }]
   }

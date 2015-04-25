@@ -1,16 +1,19 @@
 'use strict';
 import React from 'react';
 
-export default class Observer extends React.Component {
-	constructor() {
-		super();
-	}
-	handleClick() {
+var Observer = React.createClass({
+	propTypes: {
+		toggleObserver: React.PropTypes.func
+	},
+	handleClick: function () {
+		console.log(this.props);
 		this.props.toggleObserver();
-	}
+	},
 	render() {
 		return (
-			<button onClick={e => this.handleClick()}>Toogle</button>
+			<button onClick={this.handleClick}>Toogle</button>
 		);
 	}
-}
+});
+
+export default Observer;
