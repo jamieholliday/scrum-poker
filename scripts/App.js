@@ -2,11 +2,20 @@
 import React from 'react';
 import Cards from './Cards';
 import Observer from './Observer';
+import Firebase from 'firebase';
 
-require('../styles/app.css');
+require('../styles/app');
 
 var App = React.createClass({
-	getInitialState: function() {
+
+	componentWillMount () {
+		this.firebaseRef = new Firebase('https://react-poker.firebaseio.com/app');
+		this.firebaseRef.on('child_added', (dataSnapshot) => {
+			console.log(dataSnapshot.val());
+		});
+	},
+
+	getInitialState () {
 		return {cards: [
 			{name: 'xs'},
 			{name: 's'},
@@ -16,20 +25,22 @@ var App = React.createClass({
 			{name: '?'}
 		]};
 	},
-	toggleObserver: function() {
+	onToggleObserver () {
 		//set this user to be an observer
 		console.log('toggle observer');
 	},
-	cardSelected: function(name) {
+	onCardSelected (name) {
 		console.log('cards selected ' + name);
 	},
-	render: function() {
+	render () {
 		return (
 			<div>
-				<div className="col-left"></div>
+				<div className="col-left">
+					<h1>Players</h1>
+				</div>
 				<div className="col-right">
-					<Cards cardSelected={this.cardSelected} cardValues={this.state.cards}/>
-					<Observer toggleObserver={this.toggleObserver}/>
+					<Cards cardValues={this.state.cards} onCardSelected={this.onCardSelected}/>
+					<Observer onToggleObserver={this.onToggleObserver}/>
 				</div>
 			</div>
 		);

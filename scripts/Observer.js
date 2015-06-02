@@ -3,11 +3,10 @@ import React from 'react';
 
 var Observer = React.createClass({
 	propTypes: {
-		toggleObserver: React.PropTypes.func
+		onToggleObserver: React.PropTypes.func
 	},
 	handleClick: function () {
-		console.log(this.props);
-		this.props.toggleObserver();
+		this.props.onToggleObserver();
 	},
 	render() {
 		return (

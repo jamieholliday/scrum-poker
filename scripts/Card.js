@@ -1,14 +1,13 @@
 'use strict';
 import React from 'react';
-//import classNames from 'classnames';
 
 var Card = React.createClass({
 	propTypes: {
-		cardSelected: React.PropTypes.func,
-		children: React.PropTypes.object
+		children: React.PropTypes.object,
+		onCardSelected: React.PropTypes.func
 	},
 	handleClick: function() {
-		this.props.cardSelected(this.props.children.name);
+		this.props.onCardSelected(this.props.children.name);
 	},
 	render: function() {
 		return (

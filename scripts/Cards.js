@@ -4,12 +4,12 @@ import Card from './Card';
 
 var Cards = React.createClass({
 	propTypes: {
-		cardSelected: React.PropTypes.func,
-		cardValues: React.PropTypes.array
+		cardValues: React.PropTypes.array,
+		onCardSelected: React.PropTypes.func
 	},
 	render: function() {
 		var createCard = (cardText, index) => {
-			return <Card cardSelected={this.props.cardSelected} key={index + cardText.name}>{cardText}</Card>;
+			return <Card key={index + cardText.name} onCardSelected={this.props.onCardSelected}>{cardText}</Card>;
 		};
 		return (
 			<ul>{this.props.cardValues.map(createCard)}</ul>
